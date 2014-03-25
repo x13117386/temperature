@@ -1,23 +1,29 @@
 var Converter = (function() {
 
     // Private stuff up here
-    var converterValue = 2.2;
+    var conversionValue = 9/5;
+    var offsetValue = 32;
 
 
     // Public methods here
     return {
-        convertFromPoundsToKIlo: function(weight) {
-            var num = parseInt(weight);
+        convertFromCelsToFahr: function(temp) {
+            var num = parseInt(temp);
             if (isNaN(num) == true) {
                 throw new Error ("Not a number");
             }
-            num = num / converterValue;
-            return Math.round(num);
+            num = (num * conversionValue) + offsetValue;
+            return Math.round(num*10)/10;
         },
 
-        convertFromMetricToImperial: function(weight) {
-           return weight * converterValue;
+        convertFromFahrToCels: function(temp) {
+            var num = parseInt(temp);
+            if (isNaN(num) == true) {
+                throw new Error ("Not a number");
+            }
+            num = (num - offsetValue) / conversionValue;
+            return Math.round(num*10)/10;
         }
-
+        
     }
 }())
